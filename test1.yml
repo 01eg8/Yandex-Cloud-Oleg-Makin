@@ -1,0 +1,51 @@
+---
+- name: test
+  gather_facts: false
+  hosts: web_a
+  vars:
+    ansible_ssh_user: user
+  become: yes
+
+  
+  pre_tasks:
+    - name: Validating the ssh port is open and
+      wait_for:
+        host: "{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}"
+        port: 22
+        delay: 5
+        timeout: 300
+        state: started
+        search_regex: OpenSSH
+
+  tasks:
+    - name: create test file
+      copy:
+        dest: /tmp/test
+        content: "success"
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Copy the nginx.conf
+      copy:
+        src: nginx
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart nginx
+
+    - name: copy index.html
+      template: 
+        src: index
+        dest: /usr/share/nginx/html/index.html
+      notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
