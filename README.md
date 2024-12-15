@@ -37,11 +37,13 @@
 
 ### Задание 1
 
+!(https://github.com/01eg8/Yandex-Cloud-Oleg-Makin/blob/main/img/Screenshot%20from%202024-12-15%2014-43-30.png)
+!(https://github.com/01eg8/Yandex-Cloud-Oleg-Makin/blob/main/img/Screenshot%20from%202024-12-15%2014-41-16.png)
 
 
 ### Задание 2
 
-
+!(https://github.com/01eg8/Yandex-Cloud-Oleg-Makin/blob/main/img/Screenshot%20from%202024-12-15%2014-43-30.png)
 
 ### Задание 3
 
